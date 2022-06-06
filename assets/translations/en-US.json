@@ -1,0 +1,12 @@
+{
+    "title": "Top movies",
+    "cancel": "Cancel",
+    "errorMessage": "Oops, something went wrong",
+    "ok": "OK",
+    "vote": "Vote",
+    "vote_count": "Vote сount",
+    "budget": "Budget",
+    "revenue": "Revenue",
+    "play": "Play",
+    "buy_subscription": "You need to buy a subscription :)"
+}

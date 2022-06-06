@@ -85,12 +85,14 @@ class MovieDetailsScreen extends StatelessWidget with ShowAlertDialog {
                           TitleSubtitleInLine(
                               title: "${LocaleKeys.vote_count.tr()}: ",
                               subTitle: "${movieDetailsModel.voteCount}"),
-                          TitleSubtitleInLine(
-                              title: "${LocaleKeys.budget.tr()}: ",
-                              subTitle: "${movieDetailsModel.budget} \$"),
-                          TitleSubtitleInLine(
-                              title: "${LocaleKeys.revenue.tr()}: ",
-                              subTitle: "${movieDetailsModel.revenue} \$"),
+                          if (movieDetailsModel.budget != 0)
+                            TitleSubtitleInLine(
+                                title: "${LocaleKeys.budget.tr()}: ",
+                                subTitle: "${movieDetailsModel.budget} \$"),
+                          if (movieDetailsModel.revenue != 0)
+                            TitleSubtitleInLine(
+                                title: "${LocaleKeys.revenue.tr()}: ",
+                                subTitle: "${movieDetailsModel.revenue} \$"),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 19.0, horizontal: 6.0),

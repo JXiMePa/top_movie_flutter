@@ -21,6 +21,7 @@ class DetailsHeader extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: movieDetailsModel.imageUrl,
           height: height,
+          width: double.infinity,
           fit: BoxFit.cover,
         ),
         Container(

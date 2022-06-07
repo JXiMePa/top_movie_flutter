@@ -18,12 +18,13 @@ class PopularRemoteDataSourceImp implements PopularRemoteDataSource {
   Future<Result<MovieResponce, NetworkError>> getPopularMovie(
       int pageIndex) async {
     final queryParameters = {
-      'api_key': 'f910e2224b142497cc05444043cc8aa4',
+      'api_key': AppConstants.apiKey,
       'page': "$pageIndex",
       'language': "ru"
     };
     try {
-      final uri = Uri.https(AppURL.baseApiUrl, _basePath, queryParameters);
+      final uri =
+          Uri.https(AppConstants.baseApiUrl, _basePath, queryParameters);
       final response = await client.get(uri);
       final json = jsonDecode(response.body);
       return Result(success: MovieResponce.fromJson(json));

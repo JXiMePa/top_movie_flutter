@@ -12,26 +12,26 @@ class PopularCubit extends Cubit<PopularState> {
   PopularCubit({required this.repository}) : super(PopularStateImp.initial());
 
   final PopularRepository repository;
-  List<Movie> oldModels = [];
+  List<Movie> movies = [];
   int pageIndex = 1;
 
   void uploadNext() async {
-    emit(PopularStateImp.upload(isUploaded: false, models: oldModels));
+    emit(PopularStateImp.upload(isUploaded: false, models: movies));
 
     final result = await repository.getPopularMovie(pageIndex);
     if (result.error != null) {
       final message = result.error?.message ?? "";
       emit(PopularStateImp.error(
-          message: message, models: oldModels, isUploaded: false));
+          message: message, models: movies, isUploaded: false));
       return;
     }
 
     if (result.success != null) {
       final models = result.success?.results ?? [];
 
-      oldModels += models;
+      movies += models;
       pageIndex++;
-      emit(PopularStateImp.upload(isUploaded: true, models: oldModels));
+      emit(PopularStateImp.upload(isUploaded: true, models: movies));
       return;
     }
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AppURL {
+class AppConstants {
   static const baseApiUrl = "api.themoviedb.org";
+  static const apiKey = "f910e2224b142497cc05444043cc8aa4";
 }
 
 class AppColors {

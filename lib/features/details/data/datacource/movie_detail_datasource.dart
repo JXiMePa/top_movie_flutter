@@ -17,13 +17,10 @@ class MovieDetailsRemoteDataSourceImp implements MovieDetailsRemoteDataSource {
   @override
   Future<Result<MovieDetails, NetworkError>> getMovieDetailsBy(
       int movieId) async {
-    final queryParameters = {
-      'api_key': 'f910e2224b142497cc05444043cc8aa4',
-      'language': "ru"
-    };
+    final queryParameters = {'api_key': AppConstants.apiKey, 'language': "ru"};
     try {
-      final uri =
-          Uri.https(AppURL.baseApiUrl, "$_basePath/$movieId", queryParameters);
+      final uri = Uri.https(
+          AppConstants.baseApiUrl, "$_basePath/$movieId", queryParameters);
       final response = await client.get(uri);
       final json = jsonDecode(response.body);
       return Result(success: MovieDetails.fromJson(json));

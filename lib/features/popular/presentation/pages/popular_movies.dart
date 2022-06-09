@@ -22,6 +22,9 @@ class PopularMoviesScreen extends StatelessWidget with ShowAlertDialog {
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
         child: BlocConsumer<PopularCubit, PopularState>(
+          // buildWhen: (previous, current) {
+          //   return true;
+          // },
           builder: (context, state) {
             if (state is PopularStateImp) {
               if (state is InitialPopularState) {

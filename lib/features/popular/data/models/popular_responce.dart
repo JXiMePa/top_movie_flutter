@@ -29,8 +29,6 @@ class MovieResponce {
   factory MovieResponce.fromRawJson(String str) =>
       MovieResponce.fromJson(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
-
   factory MovieResponce.fromJson(Map<String, dynamic> json) => MovieResponce(
         page: json["page"],
         results:
@@ -38,13 +36,6 @@ class MovieResponce {
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "page": page,
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
-        "total_pages": totalPages,
-        "total_results": totalResults,
-      };
 }
 
 class Movie {
@@ -74,12 +65,9 @@ class Movie {
   final double voteAverage;
   final int voteCount;
 
-  String get imageUrl {
-    if (backdropPath == null) {
-      return "";
-    }
-    return "https://image.tmdb.org/t/p/original$backdropPath";
-  }
+  String get imageUrl => backdropPath == null
+      ? ""
+      : "https://image.tmdb.org/t/p/original$backdropPath";
 
   Movie copyWith(
     bool adult,

@@ -8,16 +8,16 @@ part 'popular_state.dart';
 part 'popular_cubit.freezed.dart';
 
 class PopularCubit extends Cubit<PopularState> {
-  PopularCubit({required this.repository}) : super(PopularStateImp.initial());
+  PopularCubit({required PopularRepository repository}) : _repository = repository, super(PopularStateImp.initial());
 
-  final PopularRepository repository;
+  final PopularRepository _repository;
   List<Movie> movies = [];
-  int pageIndex = 1;
+  int _pageIndex = 1;
 
   void uploadNext() async {
     emit(PopularStateImp.upload(isUploaded: false, models: movies));
 
-    final result = await repository.getPopularMovie(pageIndex);
+    final result = await _repository.getPopularMovie(_pageIndex);
     if (result.error != null) {
       final message = result.error?.message ?? "";
       emit(PopularStateImp.error(
@@ -27,9 +27,8 @@ class PopularCubit extends Cubit<PopularState> {
 
     if (result.success != null) {
       final models = result.success?.results ?? [];
-
       movies += models;
-      pageIndex++;
+      _pageIndex++;
       emit(PopularStateImp.upload(isUploaded: true, models: movies));
       return;
     }
